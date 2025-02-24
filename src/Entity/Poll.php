@@ -127,6 +127,7 @@ class Poll
     {
         if (!$this->questions->contains($question)) {
             $this->questions->add($question);
+            $question->setPoll($this);
         }
 
         return $this;
@@ -137,6 +138,7 @@ class Poll
         if ($this->questions->removeElement($question)) {
             // set the owning side to null (unless already changed)
             $this->questions->removeElement($question);
+            $question->setPoll(null);
         }
 
         return $this;

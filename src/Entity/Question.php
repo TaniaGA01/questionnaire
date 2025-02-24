@@ -22,6 +22,13 @@ class Question
     #[ORM\Column(length: 255)]
     private ?string $trackingid = null;
 
+    /**
+     * Relación ManyToOne con Poll
+     */
+    #[ORM\ManyToOne(targetEntity: Poll::class, inversedBy: 'questions')]
+    #[ORM\JoinColumn(nullable: false)] // Evita que una pregunta esté sin un poll
+    private ?Poll $poll = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +67,16 @@ class Question
     {
         $this->trackingid = $trackingid;
 
+        return $this;
+    }
+    public function getPoll(): ?Poll
+    {
+        return $this->poll;
+    }
+
+    public function setPoll(?Poll $poll): static
+    {
+        $this->poll = $poll;
         return $this;
     }
 }

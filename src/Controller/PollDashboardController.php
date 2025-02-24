@@ -49,6 +49,7 @@ final class PollDashboardController extends AbstractController
 
         return $this->render('poll_dashboard/index.html.twig', [
             'form' => $form,
+            'poll' => $poll
         ]);
     }
 

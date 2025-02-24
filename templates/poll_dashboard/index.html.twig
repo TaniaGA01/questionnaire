@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création du questionnaire{% endblock %}
+{% block title %}Création du questionnaire
+{% endblock %}
 
 {% block body %}
-{% dump(form.user.vars) %}
-<div class="border-blue-900 border-2 rounded-2xl px-16 py-12">
-	{{ form_start(form) }}
+
+
+	<div class="border-blue-900 border-2 rounded-2xl px-16 py-12">
+		{{ form_start(form) }}
 		<div class="space-y-12">
 			<div class="border-b border-white/10 pb-12">
 				<div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -47,21 +49,49 @@
 					</div>
 					<div class="sm:col-span-5">
 						{{ form_label(form.questions) }}
-						<div class="mt-2">
-							{{ form_widget(form.questions) }}
+						<div id="questionsGroup"></div>
+					</div>
+					<div
+						class="sm:col-span-5" data-controller="add-element" data-add-element-target="collection" data-prototype="">
+						{# Question Prototype #}
+						<div id="{{ form.questions.vars.prototype.vars.id }}" class="hidden">
+							<label class="block text-sm/6 font-medium text-blue-300" for="{{ form.questions.vars.prototype.children.questionName.vars.id }}">
+								{{ form.questions.vars.prototype.children.questionName.vars.name }}
+								- 
+																__name__
+							</label>
+							<div class="flex">
+								<input class="form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white  -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" type="text" id="{{ form.questions.vars.prototype.children.questionName.vars.id }}" name="{{ form.questions.vars.prototype.children.questionName.vars.full_name }}"/>
+								<button type="button" class="text-base font-semibold flex justify-end bg-orange-950 align-middle border-orange-700 border-1 py-1.5 px-4 rounded-md text-orange-500 hover:bg-orange-700 hover:text-blue-200 right-3 top-3 ml-1">
+									{{ ux_icon('uiw:delete',{
+												height: '20px', 
+												width: '20px', 
+												'aria-hidden': true
+											}
+										) }}
+								</button>
+
+							</div>
+						</div>
+						<div class="w-full mt-2">
+							<button type="button" class="rounded-full text-base font-semibold justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3 ml-1" data-action="click->add-element#addElement" data-add-element-target="addButton">
+								{{ ux_icon('heroicons:plus-16-solid', {
+									height: '20px',
+									width: '20px',
+									'aria-hidden': true
+								}) }}
+							</button>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 		<div class="mt-6 flex items-center justify-end gap-x-6">
-			<button 
-				type="submit" 
-				class="rounded-4xl bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500"
-			>
-			Envoyer
+			<button type="submit" class="rounded-4xl bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500">
+				Envoyer
 			</button>
 		</div>
-	{{ form_end(form) }}
+		{{ form_end(form) }}
 	</div>
 {% endblock %}

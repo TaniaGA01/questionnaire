@@ -61,6 +61,7 @@ class PollType extends AbstractType
                 'allow_add' => true, // Permite agregar preguntas dinámicamente
                 'allow_delete' => true, // Permite eliminar preguntas
                 'by_reference' => false, // Importante para relaciones ManyToOne
+                'prototype' => true,
                 'label' => "Questions",
                 'required' => false,
                 'label_attr' => [
