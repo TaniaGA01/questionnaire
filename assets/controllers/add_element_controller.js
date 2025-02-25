@@ -7,21 +7,17 @@ export default class extends Controller {
     connect() {
         this.index = this.collectionTarget.children.length;
     }
-    
+
     addElement(event) {
         event.preventDefault();
         
-        const prototypeElement = this.collectionTarget.firstElementChild;
-        const prototypeHTML = prototypeElement.outerHTML;
-        const newForm = prototypeHTML.replace(/__name__/g, this.index - 1);
+        const prototypeElement = this.collectionTarget.dataset.prototype;
+        const newForm = prototypeElement.replace(/__name__/g, this.index);
         const questionElement = document.createElement('div');
-
         questionElement.innerHTML = newForm;
-        questionElement.firstElementChild.classList.remove('hidden');
-        
         const questionsGroup = document.getElementById('questionsGroup');
         questionsGroup.appendChild(questionElement.firstElementChild);
-    
+
         this.index++;
     }
 
