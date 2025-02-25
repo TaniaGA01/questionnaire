@@ -3,8 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -24,8 +23,14 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private ?string $trackingid = null;
+
+    public function __construct()
+    {
+        $this->trackingid = Uuid::uuid4()->toString(); // Generar UUID automáticamente
+    }
+
 
     public function getId(): ?int
     {

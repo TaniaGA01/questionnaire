@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
@@ -16,18 +17,24 @@ class Question
     #[ORM\Column(length: 255)]
     private ?string $questionName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private ?string $trackingid = null;
 
     /**
      * Relación ManyToOne con Poll
      */
     #[ORM\ManyToOne(targetEntity: Poll::class, inversedBy: 'questions')]
-    #[ORM\JoinColumn(nullable: false)] // Evita que una pregunta esté sin un poll
+    #[ORM\JoinColumn(nullable: false)]
     private ?Poll $poll = null;
+
+    public function __construct()
+    {
+        $this->trackingid = Uuid::uuid4()->toString();
+    }
+
 
     public function getId(): ?int
     {

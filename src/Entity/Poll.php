@@ -6,6 +6,7 @@ use App\Repository\PollRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PollRepository::class)]
@@ -28,17 +29,19 @@ class Poll
     /**
      * @var User|null
      */
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'polls')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'polls', cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
 
-    #[ORM\Column(length: 255)]
+
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private ?string $trackingid = null;
 
     /**
      * @var Collection<int, Question>
      */
-    #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'poll')]
+    #[ORM\OneToMany(targetEntity: Question::class, mappedBy: "poll", cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $questions;
 
     public function __construct()

@@ -7,9 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\String\Slugger\SluggerInterface;
 use Ramsey\Uuid\Uuid;
 use App\Entity\Poll;
+use App\Entity\User;
 use App\Form\PollType;
 
 #[Route('/poll/dashboard')]
@@ -23,7 +23,7 @@ final class PollDashboardController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/create', name: 'app_poll_create')]
+    #[Route('/create', name: 'app_poll_create', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
         $poll = new Poll();
@@ -36,20 +36,26 @@ final class PollDashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             foreach ($poll->getQuestions() as $question) {
-                if (!$question->getTrackingid()) {
-                    $question->setTrackingid(Uuid::uuid4()->toString());
-                }
+                $question->setPoll($poll);
+                $this->entityManager->persist($question);
             }
-
+            
             $this->entityManager->persist($poll);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('poll_index'); // Redirige donde sea necesario
+            return $this->redirectToRoute('app_poll_confirmation');
         }
 
         return $this->render('poll_dashboard/index.html.twig', [
             'form' => $form,
             'poll' => $poll
+        ]);
+    }
+
+    #[Route('/confirmation', name: 'app_poll_confirmation')]
+    public function confirmation():Response{
+        return $this->render('poll_dashboard/confirmation.html.twig', [
+            'controller_name' => 'PollDashboardController',
         ]);
     }
 
