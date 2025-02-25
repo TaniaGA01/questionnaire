@@ -28,7 +28,7 @@ class User
 
     public function __construct()
     {
-        $this->trackingid = Uuid::uuid4()->toString(); // Generar UUID automáticamente
+        $this->trackingid = Uuid::uuid4()->toString();
     }
 
 

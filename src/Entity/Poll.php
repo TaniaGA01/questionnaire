@@ -139,7 +139,6 @@ class Poll
     public function removeQuestion(Question $question): static
     {
         if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
             $this->questions->removeElement($question);
             $question->setPoll(null);
         }

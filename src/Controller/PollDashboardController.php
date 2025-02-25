@@ -17,7 +17,6 @@ final class PollDashboardController extends AbstractController
 {
     private $entityManager;
 
-    // Inyección de dependencias en el constructor
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
