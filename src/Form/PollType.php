@@ -66,7 +66,7 @@ class PollType extends AbstractType
                     'class' => 'block text-sm/6 font-medium text-blue-300',
                 ],
                 'attr'=>[
-                    'data-add-element-target' => 'collection',
+                    'data-questions-target' => 'collection',
                     'class' => 'hidden'
                 ]
             ]);;
