@@ -12,7 +12,7 @@ use App\Entity\Poll;
 use App\Entity\User;
 use App\Form\PollType;
 
-#[Route('/poll/dashboard')]
+
 final class PollDashboardController extends AbstractController
 {
     private $entityManager;
@@ -21,9 +21,14 @@ final class PollDashboardController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
+    #[Route('/', name: 'app_home')]
+    public function index(): Response
+    {
+        return $this->render('home/index.html.twig');
+    }
 
     #[Route('/create', name: 'app_poll_create', methods: ['GET', 'POST'])]
-    public function index(Request $request): Response
+    public function creation(Request $request): Response
     {
         $poll = new Poll();
         $poll_trackingId = Uuid::uuid4()->toString();

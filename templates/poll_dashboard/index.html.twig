@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création du questionnaire
+{% block title %}
+Création du questionnaire
 {% endblock %}
 
 {% block body %}
 
-<div class="border-blue-900 border-2 rounded-2xl px-16 py-12">
+<div class="border-blue-900 border-2 rounded-2xl px-16 py-12" data-controller="form-validation",>
 	{{ form_start(form, {
 			'attr': {
-				'data-controller':'form-validation',
 				'data-controller':'questions'
 			}
 		}) }}
@@ -51,31 +51,31 @@
 							{{ form_widget(form.expirationDate) }}
 						</div>
 					</div>
-					<div class="sm:col-span-6">
-						{{ form_label(form.questions) }}
-						<div id="questionsGroup" class="mt-5"></div>
+				</div>
+				<div class="col-span-12 mt-8">
+					{{ form_label(form.questions) }}
+					<small></small>
+					<div id="questionsGroup" class="mt-5"></div>
+				</div>
+				{# Question Prototype #}
+				{{ form_widget(form.questions, {
+					'attr': {
+						"data-prototype":"<div id='poll_questions___name__' class='mt-3'><label class='block text-sm/6 font-medium text-cyan-300' for='poll_questions___name___questionName'>Question-__name__</label><div class='flex'><input class='form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-indigo-500 sm:text-sm/6'type='text'id='poll_questions___name___questionName'name='poll[questions][__name__][questionName]'data-form-validation-target='input' required/><button id='poll_questions___name__' type='button' data-action='click->questions#deleteQuestion' data-questions-target='deleteQuestionButton' class='remove-question text-base font-semibold flex justify-end bg-orange-950 align-middle border-orange-700 border-1 py-1.5 px-4 rounded-md text-orange-500 hover:bg-orange-700 hover:text-blue-200 right-3 top-3 ml-1'>🗑️</button></div></div>"
+					}
+				}) }}
+					<div class="w-full mt-5">
+						<button type="button" class="rounded-full text-base font-semibold justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3 ml-1" data-action="click->questions#addQuestion" data-questions-target="addQuestionButton">
+							{{ ux_icon('heroicons:plus-16-solid', {
+								height: '20px',
+								width: '20px',
+								'aria-hidden': true
+							}) }}
+						</button>
 					</div>
-					{# Question Prototype #}
-					{{ form_widget(form.questions, {
-						'attr': {
-							"data-prototype":"<div id='poll_questions___name__' class='mt-3'><label class='block text-sm/6 font-medium text-blue-300' for='poll_questions___name___questionName'>Question-__name__</label><div class='flex'><input class='form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-indigo-500 sm:text-sm/6'type='text'id='poll_questions___name___questionName'name='poll[questions][__name__][questionName]'data-form-validation-target='input' required/><button id='poll_questions___name__' type='button' data-action='click->questions#deleteQuestion' data-questions-target='deleteQuestionButton' class='remove-question text-base font-semibold flex justify-end bg-orange-950 align-middle border-orange-700 border-1 py-1.5 px-4 rounded-md text-orange-500 hover:bg-orange-700 hover:text-blue-200 right-3 top-3 ml-1'>🗑️</button></div></div>"
-						}
-					}) }}
-						<div class="w-full mt-2">
-							<button type="button" class="rounded-full text-base font-semibold justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3 ml-1" data-action="click->questions#addQuestion" data-questions-target="addQuestionButton">
-								{{ ux_icon('heroicons:plus-16-solid', {
-									height: '20px',
-									width: '20px',
-									'aria-hidden': true
-								}) }}
-							</button>
-						</div>
-					</div>
-
 				</div>
 			</div>
 			<div class="mt-6 flex items-center justify-end gap-x-6">
-				<button type="submit" data-action="click->form-validation#validate" class="rounded-4xl bg-blue-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-500">
+				<button type="submit" class="rounded-4xl text-base font-semibold flex justify-end bg-green-950 align-middle border-green-700 border-1 py-1.5 px-4 text-green-500 hover:bg-green-700 hover:text-green-200">
 					Envoyer
 				</button>
 			</div>

@@ -1,66 +1,50 @@
-<div data-controller="aside w-">
-	<div class="relative pointer-events-auto text-white flex justify-end align-middle w-full">
-		<button data-action="aside#open" type="button" class="fixed text-base font-semibold flex justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 rounded-4xl text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3">
-			{{ ux_icon(
-				'memory:tooltip-start-help', {
-				height: '20px', 
-				width: '20px', 
-				'aria-hidden': true,
-				'class': 'mr-1'
-				}
-				) 
-			}}
-			<h3 class="text-sm">Mettre à niveau votre abonnement</h3>
-		</button>
-	</div>
-	<div data-aside-target="rightModal" class="fixed z-10 transition-all duration-500 ease-in-out overflow-hidden shadow-lg h-screen backdrop-blur-xs flex justify-end p-3 pointer-events-auto top-0" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" style="right:-600px;" data-action="click->aside#close">
-		<div class="relative overflow-hidden h-full">
-			<div class="inset-0 overflow-hidden h-full">
-				<div class="pointer-events-none inset-y-0 right-0 flex max-w-full h-full">
-					<div class="pointer-events-auto w-screen max-w-md">
-						<div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl rounded-lg">
-							<div class="bg-blue-700 px-4 py-6 sm:px-6">
-								<div class="flex h-7 items-center">
-									<button data-action="aside#close" type="button" class="relative rounded-md bg-blue-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
-										<span class="absolute -inset-2.5"></span>
-										<span class="sr-only">Close panel</span>
-										<svg class="size-6" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
-											<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
-										</svg>
-									</button>
-								</div>
-								<div class="text-center py-3">
-									{{ ux_icon('tabler:packages',{
-                    height: '60px', 
-                    width: '60px', 
-                    'aria-hidden': true,
-                    'class': 'mr-1 text-blue-400 w-100'
-                  }) }}
-									<h2 class="mt-2 text-xl font-semibold text-gray-100 mb-3">
-										🚀 Passez à la vitesse supérieure avec nos abonnements
-									</h2>
-									<p class="text-blue-300">
-										Vous profitez déjà de notre platforme ?
-										<br/>
-										Pourquoi ne pas débloquer tout le potentiel de votre expérience ? 🔓
-									</p>
-								</div>
+<div data-aside-target="rightModal" class="fixed z-10 transition-all duration-500 ease-in-out overflow-hidden shadow-lg h-screen backdrop-blur-xs flex justify-end p-3 pointer-events-auto top-0" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" style="right:-600px;" data-action="click->aside#close">
+	<div class="relative overflow-hidden h-full">
+		<div class="inset-0 overflow-hidden h-full">
+			<div class="pointer-events-none inset-y-0 right-0 flex max-w-full h-full">
+				<div class="pointer-events-auto w-screen max-w-md">
+					<div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl rounded-lg">
+						<div class="bg-blue-700 px-4 py-6 sm:px-6">
+							<div class="flex h-7 items-center">
+								<button data-action="aside#close" type="button" class="relative rounded-md bg-blue-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+									<span class="absolute -inset-2.5"></span>
+									<span class="sr-only">Close panel</span>
+									<svg class="size-6" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+									</svg>
+								</button>
 							</div>
-							<div class="relative p-4 rounded-4xl">
-								<ul role="list" class="divide-y divide-gray-200 border-t border-b border-gray-200">
-									<li class="flex items-center justify-between space-x-3 p-4">✅ Accédez à des fonctionnalités exclusives</li>
-									<li class="flex items-center justify-between space-x-3 p-4">✅ Bénéficiez d’un support prioritaire</li>
-									<li class="flex items-center justify-between space-x-3 p-4">✅ Profitez de mises à jour anticipées</li>
-								</ul>
-								<div class="bg-gray-100 p-5 mt-3 rounded-lg">
-									<p class="text-sm">
-										Ne manquez pas cette opportunité d’améliorer votre expérience. Mettez à niveau votre abonnement dès aujourd'hui et découvrez la différence ! ✨
-									</p>
-									<div class="w-100 flex justify-center pt-6">
-										<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white ring-1 shadow-xs ring-emerald-600 bg-emerald-600 ring-inset hover:bg-emerald-400 hover:ring-emerald-400">
-											Je découvre !
-										</button>
-									</div>
+							<div class="text-center py-3">
+								{{ ux_icon('tabler:packages',{
+				height: '60px', 
+				width: '60px', 
+				'aria-hidden': true,
+				'class': 'mr-1 text-blue-400 w-100'
+				}) }}
+								<h2 class="mt-2 text-xl font-semibold text-gray-100 mb-3">
+									🚀 Passez à la vitesse supérieure avec nos abonnements
+								</h2>
+								<p class="text-blue-300">
+									Vous profitez déjà de notre platforme ?
+									<br/>
+									Pourquoi ne pas débloquer tout le potentiel de votre expérience ? 🔓
+								</p>
+							</div>
+						</div>
+						<div class="relative p-4 rounded-4xl">
+							<ul role="list" class="divide-y divide-gray-200 border-t border-b border-gray-200">
+								<li class="flex items-center justify-between space-x-3 p-4">✅ Accédez à des fonctionnalités exclusives</li>
+								<li class="flex items-center justify-between space-x-3 p-4">✅ Bénéficiez d’un support prioritaire</li>
+								<li class="flex items-center justify-between space-x-3 p-4">✅ Profitez de mises à jour anticipées</li>
+							</ul>
+							<div class="bg-gray-100 p-5 mt-3 rounded-lg">
+								<p class="text-sm">
+									Ne manquez pas cette opportunité d’améliorer votre expérience. Mettez à niveau votre abonnement dès aujourd'hui et découvrez la différence ! ✨
+								</p>
+								<div class="w-100 flex justify-center pt-6">
+									<button type="button" class="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-white ring-1 shadow-xs ring-emerald-600 bg-emerald-600 ring-inset hover:bg-emerald-400 hover:ring-emerald-400">
+										Je découvre !
+									</button>
 								</div>
 							</div>
 						</div>
