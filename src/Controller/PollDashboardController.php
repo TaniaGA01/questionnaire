@@ -37,7 +37,9 @@ final class PollDashboardController extends AbstractController
         $form = $this->createForm(PollType::class, $poll);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() ) {
+
+            dump('hola');
 
             foreach ($poll->getQuestions() as $question) {
                 $question->setPoll($poll);

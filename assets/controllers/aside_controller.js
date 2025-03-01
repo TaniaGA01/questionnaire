@@ -7,15 +7,15 @@ export default class extends Controller {
     async close() {
         this.rightModalTarget.style.right = '-600px';
         this.rightModalTarget.style.width = 'initial';
-        await this.#waitForAnimation();
+        await this.waitForAnimation();
     }
     async open() {
         this.rightModalTarget.style.right = '0';
         this.rightModalTarget.style.width = '100%';
-        await this.#waitForAnimation();
+        await this.waitForAnimation();
     }
     
-    #waitForAnimation() {
+    waitForAnimation() {
         return Promise.all(
             this.element.getAnimations().map((animation) => animation.finished)
         );

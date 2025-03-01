@@ -1,22 +1,32 @@
 import { Controller } from '@hotwired/stimulus';
+import { alertHandle } from './utils/alertHandler'
 
 export default class extends Controller {
     
-    static targets = ['collection', 'addQuestionButton', 'deleteQuestionButton']
+    static targets = ['questionsGroup', 'questions', 'addQuestionButton', 'deleteQuestionButton']
 
     connect() {
-        this.index = this.collectionTarget.children.length;
+        this.index = this.questionsGroupTarget.children.length;
     }
 
     addQuestion(event) {
         event.preventDefault();
         
-        const prototypeElement = this.collectionTarget.dataset.prototype;
-        const newForm = prototypeElement.replace(/__name__/g, this.index + 1);
+        const prototypeElement = this.questionsTarget.cloneNode(true);
         const questionElement = document.createElement('div');
-        questionElement.innerHTML = newForm;
-        const questionsGroup = document.getElementById('questionsGroup');
-        questionsGroup.appendChild(questionElement.firstElementChild);
+        
+        [...prototypeElement.children]
+        .forEach(item => {
+            item.outerHTML = item.outerHTML.replace(/__questions__/g, this.index + 1);
+        });
+        
+        questionElement.classList.add('mt-3');
+        questionElement.innerHTML = prototypeElement.innerHTML;
+        const newDeletBtn = questionElement.querySelector('button');
+        questionElement.id = newDeletBtn.id;
+
+        this.questionsGroupTarget.appendChild(questionElement);
+        alertHandle();
 
         this.index++;
     }
@@ -31,15 +41,34 @@ export default class extends Controller {
     }
 
     sortQuestions(){
-        const questionsGroup = document.getElementById('questionsGroup');
 
-        if(questionsGroup.children){
-            [...questionsGroup.children].forEach((div, index) => {
-                index++
-                div.outerHTML = 
-                `<div id="poll_questions_${index}" class="mt-3"><label class="block text-sm/6 font-medium text-cyan-300" for="poll_questions_${index}_questionName">Question-${index}</label><div class="flex"><input class="form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-indigo-500 sm:text-sm/6" type="text" id="poll_questions_${index}_questionName" name="poll[questions][${index}][questionName]" data-form-validation-target="input" required=""><button id="poll_questions_${index}" type="button" data-action="click->questions#deleteQuestion" data-questions-target="deleteQuestionButton" class="remove-question text-base font-semibold flex justify-end bg-orange-950 align-middle border-orange-700 border-1 py-1.5 px-4 rounded-md text-orange-500 hover:bg-orange-700 hover:text-blue-200 right-3 top-3 ml-1">🗑️</button></div></div>`
-            })
-            this.index--
+        if([...this.questionsGroupTarget.children].length){
+            
+            [...this.questionsGroupTarget.children]
+                .forEach((element, idx) => {
+                    let index = idx + 1;
+                    
+                    if(element.id){
+                        element.id = element.id.replace(/(\d+)/, index);
+                    }
+                    const label = element.querySelector('label');
+                    label.htmlFor = label.htmlFor.replace(/(\d+)/, index);
+                    label.innerText = label.innerText.replace(/(\d+)/, index);
+
+                    const block = element.querySelector('div');
+                    
+                    if(block){
+                        const input = block.querySelector('input');
+                        const button = block.querySelector('button');
+                        
+                        input.id = input.id.replace(/(\d+)/, index);
+                        input.name = input.name.replace(/(\d+)/, index);
+                        button.id = button.id.replace(/(\d+)/, index);
+                    }
+                })
         }
+        this.index--
+
     }
+
 }
