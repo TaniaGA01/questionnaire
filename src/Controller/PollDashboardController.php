@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 use App\Entity\Poll;
 use App\Entity\User;
 use App\Form\PollType;
-
+use App\Repository\PollRepository;
 
 final class PollDashboardController extends AbstractController
 {
@@ -39,8 +39,6 @@ final class PollDashboardController extends AbstractController
 
         if ($form->isSubmitted() ) {
 
-            dump('hola');
-
             foreach ($poll->getQuestions() as $question) {
                 $question->setPoll($poll);
                 $this->entityManager->persist($question);
@@ -49,7 +47,7 @@ final class PollDashboardController extends AbstractController
             $this->entityManager->persist($poll);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_poll_confirmation');
+            return $this->redirectToRoute('app_poll_confirmation', ['trackingid' => $poll->getTrackingid()]);
         }
 
         return $this->render('poll_dashboard/index.html.twig', [
@@ -58,10 +56,35 @@ final class PollDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/confirmation', name: 'app_poll_confirmation')]
-    public function confirmation():Response{
+    #[Route('poll/{trackingid}/confirmation', name: 'app_poll_confirmation')]
+    public function confirmation(string $trackingid, PollRepository $pollRepository):Response
+    {
+
+        $poll = $pollRepository->findOneBy(['trackingid' => $trackingid]);
+        if (!$poll) {
+            return $this->json(['error' => 'Sondage not found'], 404);
+        }
+
         return $this->render('poll_dashboard/confirmation.html.twig', [
-            'controller_name' => 'PollDashboardController',
+            'poll' => $poll,
+        ]);
+    }
+
+    #[Route('poll/{trackingid}/modification', name: 'app_poll_confirmation')]
+    public function mmodification(string $trackingid, PollRepository $pollRepository, Request $request):Response
+    {
+
+        $poll = $pollRepository->findOneBy(['trackingid' => $trackingid]);
+        $form = $this->createForm(PollType::class, $poll);
+        $form->handleRequest($request);
+
+        if (!$poll) {
+            return $this->json(['error' => 'Sondage not found'], 404);
+        }
+
+        return $this->render('poll_dashboard/index.html.twig', [
+            'form' => $form,
+            'poll' => $poll
         ]);
     }
 

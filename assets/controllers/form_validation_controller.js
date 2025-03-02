@@ -10,7 +10,8 @@ export default class extends Controller {
     
     validateField(){
         const emailRegex = {
-            inputText:/^[a-zA-ZÂ-ÿ\s]{3,}$/,
+            // inputText:/^[a-zA-Z0-9.,;:!?()'"-]+{3,}$/,
+            inputText:/^[a-zA-Z0-9.,;:!?()'"-\s]{3,}$/,
             inputMail:/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
         };
         

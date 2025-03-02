@@ -55,6 +55,10 @@ Création du questionnaire
 				</div>
 				<div class="col-span-12 mt-8">
 					{{ form_label(form.questions) }}
+					{% set questions = form.questions.vars.value %}
+					{% if form.questions.vars.value|length %}
+						<div class=""></div>
+					{% endif %}
 					<div id="questionsGroup" class="mt-5" data-questions-target="questionsGroup"></div>
 					<div 
 						id="nonQuestionsAlert"
