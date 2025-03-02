@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 import { alertHandle } from './utils/alertHandler'
 
 export default class extends Controller {
-    static targets = ['input', 'submit'];
+    static targets = ['input', 'questions', 'submit'];
 
     connect() {
         this.submitTargets[0].onclick = (event) => this.validateFieldForm(event);
@@ -52,6 +52,9 @@ export default class extends Controller {
                 if(input.value !== ''){
                     input.classList.remove('focus:outline-red-500','border-1','border-red-500');
                     alertHandle();
+                    if(this.questionsTargets){
+                        [...this.questionsTargets].forEach(item => item.remove());
+                    }
                 }else{
                     alertHandle();
                     input.classList.add('focus:outline-red-500','border-1','border-red-500');
