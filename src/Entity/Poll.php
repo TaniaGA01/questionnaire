@@ -20,7 +20,7 @@ class Poll
     #[ORM\Column(length: 255)]
     private ?string $pollName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

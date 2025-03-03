@@ -18,16 +18,16 @@ class PollType extends AbstractType
         $builder
             ->add('user', UserType::class)
             ->add('pollName', TextType::class, [
-                'label' => "Nom de du questionaire",
+                'label' => "Nom du sondage",
                 'required' => true,
                 'label_attr' => [
                     'class' => 'block text-sm/6 font-medium text-blue-300'
                 ],
                 'attr' => [
-                    'placeholder' => 'Nom du questionnaire...',
+                    'placeholder' => 'Nom du sondage...',
                     'class' => 'form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white  -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline  focus:-outline-offset-2 sm:text-sm/6',
                     'data-form-validation-target' => 'input',
-                    'data-action'=>'keydown->form-validation#validateField'
+                    'data-action'=>'input->form-validation#validateField'
                 ]
             ])
             ->add('description', TextareaType::class, [
@@ -40,13 +40,13 @@ class PollType extends AbstractType
                     'placeholder' => 'Description...',
                     'class' => 'form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white  -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline  focus:-outline-offset-2 sm:text-sm/6',
                     'data-form-validation-target' => 'input',
-                    'data-action'=>'keydown->form-validation#validateField'
+                    'data-action'=>'input->form-validation#validateField'
                 ]
             ])
             ->add('expirationDate', DateType::class, [
-                'label' => "Date d'expiration du questionnaire",
+                'label' => "Date d'expiration du sondage",
                 'widget' => 'single_text',
-                'required' => false,
+                'required' => true,
                 'label_attr' => [
                     'class' => 'block text-sm/6 font-medium text-blue-300'
                 ],

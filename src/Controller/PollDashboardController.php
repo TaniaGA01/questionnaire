@@ -70,7 +70,7 @@ final class PollDashboardController extends AbstractController
         ]);
     }
 
-    #[Route('poll/{trackingid}/modification', name: 'app_poll_confirmation')]
+    #[Route('poll/{trackingid}/modification', name: 'app_poll_modification')]
     public function mmodification(string $trackingid, PollRepository $pollRepository, Request $request):Response
     {
 

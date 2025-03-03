@@ -26,7 +26,7 @@ class UserType extends AbstractType
                     'maxlength' => 50,
                     'class' => 'form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white  -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline  focus:-outline-offset-2 sm:text-sm/6',
                     'data-form-validation-target'=>'input',
-                    'data-action'=>'keydown->form-validation#validateField'
+                    'data-action'=>'input->form-validation#validateField'
                 ]
             ])
             ->add('lastName', TextType::class, [
@@ -40,7 +40,7 @@ class UserType extends AbstractType
                     'maxlength' => 50,
                     'class' => 'form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white  -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline  focus:-outline-offset-2 sm:text-sm/6',
                     'data-form-validation-target'=>'input',
-                    'data-action'=>'keydown->form-validation#validateField'
+                    'data-action'=>'input->form-validation#validateField'
                 ]
             ])
             ->add('email', TextType::class, [
@@ -54,7 +54,7 @@ class UserType extends AbstractType
                     'maxlength' => 50,
                     'class' => 'form-control block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white  -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline  focus:-outline-offset-2 sm:text-sm/6',
                     'data-form-validation-target'=>'input',
-                    'data-action'=>'keydown->form-validation#validateField'
+                    'data-action'=>'input->form-validation#validateField'
                 ]
             ])
         ;

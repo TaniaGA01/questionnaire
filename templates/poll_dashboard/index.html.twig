@@ -59,7 +59,12 @@ Création du questionnaire
 					{% if form.questions.vars.value|length %}
 						<div class=""></div>
 					{% endif %}
-					<div id="questionsGroup" class="mt-5" data-questions-target="questionsGroup"></div>
+					<div 
+						id="questionsGroup" 
+						class="mt-5" 
+						data-questions-target="questionsGroup"
+						data-form-validation-target="questionsGroup"
+						></div>
 					<div 
 						id="nonQuestionsAlert"
 						class="hidden border-red-600 rounded-md p-5 outline-2 outline-dotted text-red-600"
