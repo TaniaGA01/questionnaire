@@ -5,111 +5,111 @@ Création du questionnaire
 {% endblock %}
 
 {% block body %}
-
-<div class="border-blue-900 border-2 rounded-2xl px-16 py-12" data-controller="form-validation",>
-	{{ form_start(form, {
-			'attr': {
-				'data-controller':'questions',
-				'data-form-validation-target':'form'
-			}
-		}) }}
-		<div class="space-y-12">
-			<div class="border-b border-white/10 pb-12">
-				<div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-					<div class="sm:col-span-3">
-						{{ form_label(form.user.name) }}
-						<div class="mt-2">
-							{{ form_widget(form.user.name) }}
+<section class="mx-auto w-5xl my-16 sm:px-6 lg:px-8">
+	<div class="border-blue-900 border-2 rounded-2xl px-16 py-12" data-controller="form-validation",>
+		{{ form_start(form, {
+				'attr': {
+					'data-controller':'questions',
+					'data-form-validation-target':'form'
+				}
+			}) }}
+			<div class="space-y-12">
+				<div class="border-b border-white/10 pb-12">
+					<div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+						<div class="sm:col-span-3">
+							{{ form_label(form.user.name) }}
+							<div class="mt-2">
+								{{ form_widget(form.user.name) }}
+							</div>
+						</div>
+						<div class="sm:col-span-3">
+							{{ form_label(form.user.lastName) }}
+							<div class="mt-2">
+								{{ form_widget(form.user.lastName) }}
+							</div>
+						</div>
+						<div class="sm:col-span-4">
+							{{ form_label(form.user.email) }}
+							<div class="mt-2">
+								{{ form_widget(form.user.email) }}
+							</div>
+						</div>
+						<div class="sm:col-span-4">
+							{{ form_label(form.pollName) }}
+							<div class="mt-2">
+								{{ form_widget(form.pollName) }}
+							</div>
+						</div>
+						<div class="sm:col-span-6">
+							{{ form_label(form.description) }}
+							<div class="mt-2">
+								{{ form_widget(form.description) }}
+							</div>
+						</div>
+						<div class="sm:col-span-3">
+							{{ form_label(form.expirationDate) }}
+							<div class="mt-2">
+								{{ form_widget(form.expirationDate) }}
+							</div>
 						</div>
 					</div>
-					<div class="sm:col-span-3">
-						{{ form_label(form.user.lastName) }}
-						<div class="mt-2">
-							{{ form_widget(form.user.lastName) }}
+					<div class="col-span-12 mt-8">
+						{{ form_label(form.questions) }}
+						{% set questions = form.questions.vars.value %}
+						{% if form.questions.vars.value|length %}
+							<div class=""></div>
+						{% endif %}
+						<div 
+							id="questionsGroup" 
+							class="mt-5" 
+							data-questions-target="questionsGroup"
+							data-form-validation-target="questionsGroup"
+							></div>
+						<div 
+							id="nonQuestionsAlert"
+							class="hidden border-red-600 rounded-md p-5 outline-2 outline-dotted text-red-600"
+							>
+							Merci de renseigner au moins une question
 						</div>
 					</div>
-					<div class="sm:col-span-4">
-						{{ form_label(form.user.email) }}
-						<div class="mt-2">
-							{{ form_widget(form.user.email) }}
+					{# Question Prototype #}
+						<div data-questions-target="questions" data-form-validation-target="questions" class="hidden">
+							<label 
+								class='block text-sm/6 font-medium text-cyan-300' 
+								for="{{ form.questions.vars.prototype.children.questionName.vars.id }}">Question-__questions__
+							</label>
+							<div class="flex">
+								{{ form_widget(form.questions.vars.prototype.children.questionName) }}
+								<button 
+									id="{{ form.questions.vars.prototype.vars.id }}" 
+									type="button" 
+									data-action="click->questions#deleteQuestion" 
+									data-questions-target="deleteQuestionButton" 
+									class="remove-question text-base font-semibold flex justify-end bg-orange-950 align-middle border-orange-700 border-1 py-1.5 px-4 rounded-md text-orange-500 hover:bg-orange-700 hover:text-blue-200 right-3 top-3 ml-1">
+									🗑️
+								</button>
+							</div>
 						</div>
-					</div>
-					<div class="sm:col-span-4">
-						{{ form_label(form.pollName) }}
-						<div class="mt-2">
-							{{ form_widget(form.pollName) }}
-						</div>
-					</div>
-					<div class="sm:col-span-6">
-						{{ form_label(form.description) }}
-						<div class="mt-2">
-							{{ form_widget(form.description) }}
-						</div>
-					</div>
-					<div class="sm:col-span-3">
-						{{ form_label(form.expirationDate) }}
-						<div class="mt-2">
-							{{ form_widget(form.expirationDate) }}
-						</div>
-					</div>
-				</div>
-				<div class="col-span-12 mt-8">
-					{{ form_label(form.questions) }}
-					{% set questions = form.questions.vars.value %}
-					{% if form.questions.vars.value|length %}
-						<div class=""></div>
-					{% endif %}
-					<div 
-						id="questionsGroup" 
-						class="mt-5" 
-						data-questions-target="questionsGroup"
-						data-form-validation-target="questionsGroup"
-						></div>
-					<div 
-						id="nonQuestionsAlert"
-						class="hidden border-red-600 rounded-md p-5 outline-2 outline-dotted text-red-600"
-						>
-						Merci de renseigner au moins une question
-					</div>
-				</div>
-				{# Question Prototype #}
-					<div data-questions-target="questions" data-form-validation-target="questions" class="hidden">
-						<label 
-							class='block text-sm/6 font-medium text-cyan-300' 
-							for="{{ form.questions.vars.prototype.children.questionName.vars.id }}">Question-__questions__
-						</label>
-						<div class="flex">
-							{{ form_widget(form.questions.vars.prototype.children.questionName) }}
-							<button 
-								id="{{ form.questions.vars.prototype.vars.id }}" 
-								type="button" 
-								data-action="click->questions#deleteQuestion" 
-								data-questions-target="deleteQuestionButton" 
-								class="remove-question text-base font-semibold flex justify-end bg-orange-950 align-middle border-orange-700 border-1 py-1.5 px-4 rounded-md text-orange-500 hover:bg-orange-700 hover:text-blue-200 right-3 top-3 ml-1">
-								🗑️
+						<div class="w-full mt-5">
+							<button type="button" class="rounded-full text-base font-semibold justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3 ml-1 " data-action="click->questions#addQuestion" data-questions-target="addQuestionButton">
+								<span class="flex">
+								{{ ux_icon('heroicons:plus-16-solid', {
+									height: '20px',
+									width: '20px',
+									'aria-hidden': true
+								}) }} <small>Ajouter une question</small>
+								</span>
 							</button>
 						</div>
 					</div>
-					<div class="w-full mt-5">
-						<button type="button" class="rounded-full text-base font-semibold justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3 ml-1 " data-action="click->questions#addQuestion" data-questions-target="addQuestionButton">
-							<span class="flex">
-							{{ ux_icon('heroicons:plus-16-solid', {
-								height: '20px',
-								width: '20px',
-								'aria-hidden': true
-							}) }} <small>Ajouter une question</small>
-							</span>
-						</button>
-					</div>
+				</div>
+				<div class="mt-6 flex items-center justify-end gap-x-6">
+					<button type="submit" class="rounded-4xl text-base font-semibold flex justify-end bg-green-950 align-middle border-green-700 border-1 py-1.5 px-4 text-green-500 hover:bg-green-700 hover:text-green-200" data-action="click->form-validation#validateFieldForm" data-form-validation-target="submit">
+						Envoyer
+					</button>
 				</div>
 			</div>
-			<div class="mt-6 flex items-center justify-end gap-x-6">
-				<button type="submit" class="rounded-4xl text-base font-semibold flex justify-end bg-green-950 align-middle border-green-700 border-1 py-1.5 px-4 text-green-500 hover:bg-green-700 hover:text-green-200" data-action="click->form-validation#validateFieldForm" data-form-validation-target="submit">
-					Envoyer
-				</button>
-			</div>
-		</div>
-		
 		{{ form_end(form, {'render_rest': false}) }}
 	</div>
+</section>
 {% endblock %}

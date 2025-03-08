@@ -9,9 +9,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Ramsey\Uuid\Uuid;
 use App\Entity\Poll;
-use App\Entity\User;
 use App\Form\PollType;
 use App\Repository\PollRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class PollDashboardController extends AbstractController
 {
@@ -21,10 +21,16 @@ final class PollDashboardController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
+    
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(): Response|JsonResponse
     {
-        return $this->render('home/index.html.twig');
+        $filePath = $this->getParameter('kernel.project_dir') . '/var/formations.php';
+        $formations = include $filePath;
+        
+        return $this->render('home/index.html.twig', [
+            'formations' => $formations
+        ]);
     }
 
     #[Route('/create', name: 'app_poll_create', methods: ['GET', 'POST'])]

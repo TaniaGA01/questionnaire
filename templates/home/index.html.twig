@@ -3,4 +3,61 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+<div class="h-screen overflow-y-auto snap-y snap-mandatory">
+    <!-- Sección 1 -->
+    <section class="h-screen snap-start bg-blue-950">Sección 1</section>
+    
+    <!-- Sección 2 -->
+    <section class="h-screen snap-start bg-green-950">Sección 2</section>
+     {# <section data-controller="scroll-lock" class="h-screen snap-start bg-gray-900 overflow-y-auto" id="scroll-section"> #}
+     <section class="h-screen snap-start bg-gray-900 overflow-y-auto">
+        <div class="p-24 relative">
+            <h2 class="text-white top-4">Les plus recherches</h2>
+            <div class="flex" data-controller="scroll-lock">
+                    <div class="px-20">
+                        <div class="text-yellow-400" style="position: sticky; top: 20px;">Les BTS</div>
+                        <div class="">Les Licences</div>
+                        <div class="">Les Masters</div>
+                    </div>
+                    <div class="overflow-y-scroll overflow-hidden h-full">
+                        <div class="flex flex-wrap">
+                            {% for bts in formations.bts %}
+                                <div class="m-2">
+                                    <button class="rounded-full text-bas font-medium justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3"
+                                    >
+                                    <small>{{ bts.name }}</small>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="flex flex-wrap">
+                            {% for licence in formations.licences %}
+                                <div class="m-2">
+                                    <button class="rounded-full text-bas font-medium justify-end bg-blue-950 align-middle border-orange-700 border-1 py-1.5 px-4 text-orange-500 hover:bg-orange-700 hover:text-orange-200 right-3 top-3"
+                                    >
+                                    <small>{{ licence.name }}</small>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="flex flex-wrap">
+                            {% for master in formations.masters %}
+                                <div class="m-2">
+                                    <button class="rounded-full text-bas font-medium justify-end bg-blue-950 align-middle border-green-700 border-1 py-1.5 px-4 text-green-500 hover:bg-green-700 hover:text-green-200 right-3 top-3"
+                                    >
+                                    <small>{{ master.name }}</small>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+    <!-- Sección 4 -->
+    <section class="h-screen snap-start bg-yellow-200">Sección 4</section>
+    
+    <!-- Sección 5 -->
+    <section class="h-screen snap-start bg-purple-200">Sección 5</section>
+
 {% endblock %}

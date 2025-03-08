@@ -14,6 +14,9 @@ export default class extends Controller {
         
         const prototypeElement = this.questionsTarget.cloneNode(true);
         const questionElement = document.createElement('div');
+        const input = prototypeElement.querySelector('input[type="text"]');
+        input.setAttribute('required', true);
+
         
         [...prototypeElement.children]
         .forEach(item => {

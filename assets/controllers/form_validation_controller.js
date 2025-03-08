@@ -66,7 +66,7 @@ export default class extends Controller {
                 }
             })}
     }
-
+    
     validateFieldForm(event){
         if(this.inputTargets.length){
             [...this.inputTargets].forEach(input => { 
