@@ -2,20 +2,34 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
     connect() {
-        this.element.addEventListener("scroll", (event) => {
-            console.log('event', event)
-            const el = this.element;
-            console.log('el', el)
-            if (
-                (event.deltaY > 0 && el.scrollTop + el.clientHeight >= el.scrollHeight) ||
-                (event.deltaY < 0 && el.scrollTop === 0)
-            ) {
-                // Permite el scroll normal
-                el.closest(".overflow-y-auto").scrollBy(0, event.deltaY);
-            } else {
-                // Detiene el scroll externo
-                event.stopPropagation();
-            }
-        });
+        const 
+            parentBlock = document.getElementById('formationsBlock'),
+            firstChild = parentBlock.firstElementChild
+        ;
+
+        if (parentBlock) {
+            const offset = firstChild.offsetTop - parentBlock.offsetTop;
+            parentBlock.scrollTo({
+                top: offset - parentBlock.clientHeight / 2 + firstChild.clientHeight / 2,
+                behavior: "smooth"
+            });
+        }
+    }
+    
+    scrollToBlock(event) {
+        event.preventDefault();
+        const 
+            targetId = event.currentTarget.getAttribute("href").substring(1),
+            targetElement = document.getElementById(targetId),
+            container = targetElement.parentElement
+        ;
+
+        if (targetElement && container) {
+            const offset = targetElement.offsetTop - container.offsetTop;
+            container.scrollTo({
+                top: offset - container.clientHeight / 2 + targetElement.clientHeight / 2,
+                behavior: "smooth"
+            });
+        }
     }
 }

@@ -68,39 +68,43 @@ export default class extends Controller {
     }
     
     validateFieldForm(event){
-        if(this.inputTargets.length){
-            [...this.inputTargets].forEach(input => { 
-                if(input.required){
-                    if(input.value !== '' && input.valueAsDate !== null && this.questionsGroupTargets[0].children.length > 0 ){
-                        input.classList.remove('focus:outline-red-500','border-1','border-red-500');
-                        alertHandle();
+        if(this.formTargets.length){
+            
+            [...this.formTargets].forEach(form => { 
+                if(this.questionsGroupTargets[0].children.length > 0){
+                    if(!form.checkValidity()){
+                        [...this.inputTargets].forEach(input => { 
+                            if(!input.checkValidity()){
+                                input.classList.remove('focus:outline-green-500','border-1','border-green-500')
+                                input.classList.add('focus:outline-red-500','border-1','border-red-500');
+                            }else{
+                                input.classList.remove('focus:outline-red-500','border-1','border-red-500')
+                                input.classList.add('focus:outline-green-500','border-1','border-green-500');
+                            }
+                        })
+                        event.preventDefault();
+                    }else{
                         if(this.questionsTargets){
                             [...this.questionsTargets].forEach(item => item.remove());
                         }
                         this.formTargets[0].submit()
-                    }else{
-
-                        if(input.value !== ''){
-                            input.classList.add('focus:outline-green-500','border-1','border-green-500');
-                        }
-
-                        if(input.valueAsDate !== null){
-                            input.classList.add('focus:outline-green-500','border-1','border-green-500');
-                        }
-
-                        if(this.questionsGroupTargets[0].children.length === 0){
-                            const nonQuestionsAlert = document.getElementById('nonQuestionsAlert');
-                            nonQuestionsAlert.classList.add('vibrating');
-                            setTimeout(() =>{
-                                nonQuestionsAlert.classList.remove('vibrating');
-                            },500)
-                        }
-
-                        alertHandle();
-                        event.preventDefault();
-                        
                     }
+                }else{
+                    alertHandle();
+                    if(!form.checkValidity()){
+                        [...this.inputTargets].forEach(input => { 
+                            if(!input.checkValidity()){
+                                input.classList.add('focus:outline-red-500','border-1','border-red-500');
+                            }else{
+                                input.classList.remove('focus:outline-red-500','border-1','border-red-500')
+                                input.classList.add('focus:outline-green-500','border-1','border-green-500');
+                            }
+                        })
+                        event.preventDefault();
+                    }
+                    event.preventDefault();
                 }
+                
             })  
         }
     }

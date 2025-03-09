@@ -3,61 +3,209 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<div class="h-screen overflow-y-auto snap-y snap-mandatory">
-    <!-- Sección 1 -->
-    <section class="h-screen snap-start bg-blue-950">Sección 1</section>
-    
-    <!-- Sección 2 -->
-    <section class="h-screen snap-start bg-green-950">Sección 2</section>
-     {# <section data-controller="scroll-lock" class="h-screen snap-start bg-gray-900 overflow-y-auto" id="scroll-section"> #}
-     <section class="h-screen snap-start bg-gray-900 overflow-y-auto">
-        <div class="p-24 relative">
-            <h2 class="text-white top-4">Les plus recherches</h2>
-            <div class="flex" data-controller="scroll-lock">
-                    <div class="px-20">
-                        <div class="text-yellow-400" style="position: sticky; top: 20px;">Les BTS</div>
-                        <div class="">Les Licences</div>
-                        <div class="">Les Masters</div>
+<section class="h-[90%] overflow-y-auto snap-y snap-mandatory">
+    {# <div class="h-full snap-start bg-gray-800">Section</div> #}
+     <div 
+        id="scroll-section"
+        class="h-full snap-start bg-gray-100 overflow-y-auto flex p-20"
+        data-controller="scroll-lock"
+     >
+        <div id class="w-[25%] flex flex-col justify-between px-5">
+            <a href="#btsBlock" 
+                class="text-blue-600 hover:text-white hover:bg-blue-600 border-gray-100 hover:border-blue-600 rounded-xl border-2"
+                data-action="click->scroll-lock#scrollToBlock">
+                <div class="p-2">
+                    <div class="flex items-start">
+                        <div class="mr-2">
+                            {{ ux_icon('garden:bot-generic-26', {
+                                height:'30px', 
+                                width:'30px', 
+                                'aria-hidden': true,
+                            }) }}
+                        </div>
+                        <div class="">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les BTS</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
                     </div>
-                    <div class="overflow-y-scroll overflow-hidden h-full">
-                        <div class="flex flex-wrap">
+                </div>
+            </a>
+            <a href="#licencesBlock" 
+                class="text-gray-400"
+                data-action="click->scroll-lock#scrollToBlock">
+                <div class="p-2">
+                    <div class="flex items-start">
+                        <div class="mr-2">
+                            {{ ux_icon('ion:rocket', {
+                                height:'28px', 
+                                width:'28px', 
+                                'aria-hidden': true,
+                            }) }}
+                        </div>
+                        <div class="">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les Licences</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#mastersBlock" 
+                class="text-gray-400"
+                data-action="click->scroll-lock#scrollToBlock">
+                <div class="p-2">
+                    <div class="flex items-start">
+                        <div class="mr-2">
+                            {{ ux_icon('eos-icons:master', {
+                                height:'28px', 
+                                width:'28px', 
+                                'aria-hidden': true,
+                            }) }}
+                        </div>
+                        <div class="">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les Masters</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#licencesBlock" 
+                class="text-gray-400"
+                data-action="click->scroll-lock#scrollToBlock">
+                <div class="p-2">
+                    <div class="flex items-start">
+                        <div class="mr-2">
+                            {{ ux_icon('mdi:book-education', {
+                                height:'28px', 
+                                width:'28px', 
+                                'aria-hidden': true,
+                            }) }}
+                        </div>
+                        <div class="">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les diplômes par filière</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#mastersBlock" 
+                class="text-gray-400"
+                data-action="click->scroll-lock#scrollToBlock">
+                <div class="p-2">
+                    <div class="flex items-start">
+                        <div class="mr-2">
+                            {{ ux_icon('teenyicons:school-solid', {
+                                height:'28px', 
+                                width:'28px', 
+                                'aria-hidden': true,
+                            }) }}
+                        </div>
+                        <div class="">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les types d'établissements</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="#mastersBlock" 
+                class="text-gray-400"
+                data-action="click->scroll-lock#scrollToBlock">
+                <div class="p-2">
+                    <div class="flex items-start">
+                        <div class="mr-2">
+                            {{ ux_icon('eos-icons:network-policy', {
+                                height:'28px', 
+                                width:'28px', 
+                                'aria-hidden': true,
+                            }) }}
+                        </div>
+                        <div class="">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les formations par filière</h2> 
+                            <h3 class="font-light text-sm">les plus recherchées</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <figure class="flex flex-col gap-1 rounded-xl w-[75%] bg-white">
+            <div class="not-prose overflow-auto rounded-lg h-full">
+                <div id="formationsBlock" class="h-full sm:py-52 2xl:py-96 overflow-y-auto px-5">
+                    <div id="btsBlock" class="transition-all duration-500 ease-in-out my-30">
+                        <div class="flex flex-wrap content-center">
                             {% for bts in formations.bts %}
-                                <div class="m-2">
-                                    <button class="rounded-full text-bas font-medium justify-end bg-blue-950 align-middle border-blue-700 border-1 py-1.5 px-4 text-blue-500 hover:bg-blue-700 hover:text-blue-200 right-3 top-3"
+                                <div class="m-1">
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-blue-600 border-2 py-1.5 px-4 text-blue-600 hover:bg-blue-600 hover:text-blue-200"
                                     >
                                     <small>{{ bts.name }}</small>
                                     </button>
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="flex flex-wrap">
+                        <div class="mt-5">
+                            <a href="#" class="text-sm font-bold flex justify-end align-middle text-teal-500  hover:text-teal-200 left-3 bottom-3">
+                                Voir tous les BTS
+                                {{ ux_icon('gravity-ui:arrow-right', {
+                                height: '20px', 
+                                width: '20px', 
+                                'aria-hidden': true,
+                                'class': 'mr-1'
+                                }) }}
+                            </a>
+                        </div>
+                    </div>
+                    <div id="licencesBlock" class="transition-all duration-500 ease-in-out my-30">
+                        <div class="flex flex-wrap content-center">
                             {% for licence in formations.licences %}
-                                <div class="m-2">
-                                    <button class="rounded-full text-bas font-medium justify-end bg-blue-950 align-middle border-orange-700 border-1 py-1.5 px-4 text-orange-500 hover:bg-orange-700 hover:text-orange-200 right-3 top-3"
+                                <div class="m-1">
+                                    <button class="rounded-full text-base font-medium justify-end align-middle border-gray-300 border-1 py-1.5 px-4 text-gray-300 hover:bg-gray-300 hover:text-gray-200"
                                     >
                                     <small>{{ licence.name }}</small>
                                     </button>
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="flex flex-wrap">
+                        <div class="mt-5">
+                            <a href="#" class="text-sm font-bold flex justify-end align-middle text-teal-500  hover:text-teal-200 left-3 bottom-3">
+                                Voir tous les licences
+                                {{ ux_icon('gravity-ui:arrow-right', {
+                                height: '20px', 
+                                width: '20px', 
+                                'aria-hidden': true,
+                                'class': 'mr-1'
+                                }) }}
+                            </a>
+                        </div>
+                    </div>
+                    <div id="mastersBlock" class="transition-all duration-500 ease-in-out my-30">
+                        <div class="flex flex-wrap content-center">
                             {% for master in formations.masters %}
-                                <div class="m-2">
-                                    <button class="rounded-full text-bas font-medium justify-end bg-blue-950 align-middle border-green-700 border-1 py-1.5 px-4 text-green-500 hover:bg-green-700 hover:text-green-200 right-3 top-3"
-                                    >
+                                <div class="m-1">
+                                    <button class="rounded-full text-base font-medium justify-end align-middle border-gray-300 border-1 py-1.5 px-4 text-gray-300 hover:bg-gray-300 hover:text-gray-200">
                                     <small>{{ master.name }}</small>
                                     </button>
                                 </div>
                             {% endfor %}
                         </div>
+                        <div class="mt-5">
+                            <a href="#" class="text-sm font-bold flex justify-end align-middle text-teal-500  hover:text-teal-200 left-3 bottom-3">
+                                Voir tous les licences
+                                {{ ux_icon('gravity-ui:arrow-right', {
+                                height: '20px', 
+                                width: '20px', 
+                                'aria-hidden': true,
+                                'class': 'mr-1'
+                                }) }}
+                            </a>
+                        </div>
                     </div>
                 </div>
-        </div>
-    </section>
+            </div>
+        </figure>
+    </div>
     <!-- Sección 4 -->
-    <section class="h-screen snap-start bg-yellow-200">Sección 4</section>
+    <div class="h-full snap-start bg-yellow-200">Sección 4</div>
     
     <!-- Sección 5 -->
-    <section class="h-screen snap-start bg-purple-200">Sección 5</section>
+    <div class="h-full snap-start bg-purple-200">Sección 5</div>
+</div>
 
 {% endblock %}

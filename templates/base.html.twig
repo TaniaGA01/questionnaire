@@ -8,18 +8,17 @@
         
         {% block stylesheets %}
         <style>
-            /* .no-scrollbar {
-                -webkit-mask-image: linear-gradient(black, black);
-            } */
+            html {
+                scroll-behavior: smooth;
+            }
             .no-scrollbar::-webkit-scrollbar {
                 display: none;
             }
-
-            /* Ocultar la barra en Firefox */
             .no-scrollbar {
                 scrollbar-width: none;
-                -webkit-mask-image: linear-gradient(black, black);
+                -webkit-mask-image: linear-gradient(#101828, #101828);
             }
+
         </style>
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -28,7 +27,8 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="bg-gray-900 flex ">
+    <body class="bg-gray-900 h-screen">
+        {% include './includes/menu.html.twig'%}
         {% block body %}{% endblock %}
         <div data-controller="aside">
             {% include 'includes/fees-sidebar.html.twig' %}
