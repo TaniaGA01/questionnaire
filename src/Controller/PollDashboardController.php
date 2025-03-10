@@ -53,7 +53,10 @@ final class PollDashboardController extends AbstractController
             $this->entityManager->persist($poll);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('app_poll_confirmation', ['trackingid' => $poll->getTrackingid()]);
+            // return $this->redirectToRoute('app_poll_confirmation', ['trackingid' => $poll->getTrackingid()]);
+            return $this->render('poll_dashboard/confirmation.html.twig', [
+                'poll' => $poll,
+            ]);
         }
 
         return $this->render('poll_dashboard/index.html.twig', [

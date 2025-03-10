@@ -34,11 +34,20 @@ export default class extends Controller {
         });
 
         if (targetElement && container) {
+            
             const offset = targetElement.offsetTop - container.offsetTop;
-            container.scrollTo({
-                top: offset - container.clientHeight / 2 + targetElement.clientHeight / 2,
-                behavior: "smooth"
-            });
+            
+            setTimeout(() => {
+                container.scrollTo({
+                    top: offset - container.clientHeight / 2 + targetElement.clientHeight / 2,
+                });
+                targetElement.style.transition = "transform 0.2s ease-in-out";
+                targetElement.style.transform = "scale(0.9)"; 
+        
+                setTimeout(() => {
+                    targetElement.style.transform = "scale(1)";
+                }, 100);
+            }, 200);
     
             target.classList.remove('text-gray-400', 'border-gray-100', 'bg-gray-200');
             target.classList.add('text-white', 'bg-blue-600');

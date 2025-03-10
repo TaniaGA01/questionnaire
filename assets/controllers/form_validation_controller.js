@@ -99,9 +99,15 @@ export default class extends Controller {
                                 input.classList.remove('focus:outline-red-500','border-1','border-red-500')
                                 input.classList.add('focus:outline-green-500','border-1','border-green-500');
                             }
-                        })
+                        });
+
                         event.preventDefault();
                     }
+                    const nonQuestionsAlert = document.getElementById('nonQuestionsAlert');
+                    nonQuestionsAlert.classList.add('vibrating');
+                    setTimeout(() =>{
+                        nonQuestionsAlert.classList.remove('vibrating');
+                    },500)
                     event.preventDefault();
                 }
                 
