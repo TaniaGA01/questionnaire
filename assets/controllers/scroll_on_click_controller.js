@@ -42,7 +42,7 @@ export default class extends Controller {
                     top: offset - container.clientHeight / 2 + targetElement.clientHeight / 2,
                 });
                 targetElement.style.transition = "transform 0.2s ease-in-out";
-                targetElement.style.transform = "scale(0.9)"; 
+                targetElement.style.transform = "scale(0.98)"; 
         
                 setTimeout(() => {
                     targetElement.style.transform = "scale(1)";
