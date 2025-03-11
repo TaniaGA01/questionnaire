@@ -20,13 +20,13 @@ export default class extends Controller {
         ;
         
         [...allButtonsItems].forEach(button => {
-            button.classList.remove('border-blue-600', 'text-blue-600', 'hover:bg-blue-600', 'hover:text-white');
-            button.classList.add('border-gray-300', 'text-gray-300', 'hover:bg-gray-300', 'hover:text-gray-200');
+            button.classList.remove('sm:border-blue-600', 'sm:text-blue-100', 'sm:bg-blue-600', 'sm:hover:bg-blue-900', 'sm:hover:text-blue-200' );
+            button.classList.add('bg-gray-300', 'text-gray-600', 'border-gray-400', 'hover:bg-gray-700', 'hover:text-gray-100');
         });
         
         [...targetButtonsItems].forEach(button => {
-            button.classList.remove('border-gray-300', 'text-gray-300', 'hover:bg-gray-300', 'hover:text-gray-200');
-            button.classList.add('border-blue-600', 'text-blue-600', 'hover:bg-blue-600', 'hover:text-white');
+            button.classList.remove('bg-gray-300', 'text-gray-600', 'border-gray-400', 'hover:bg-gray-700', 'hover:text-gray-100');
+            button.classList.add('sm:border-blue-600', 'sm:text-blue-100', 'sm:bg-blue-600', 'sm:hover:bg-blue-900', 'sm:hover:text-blue-200' );
         });
         [...this.formationLinkTargets].forEach(link => {
             link.classList.remove('text-white', 'bg-blue-600');
@@ -35,22 +35,21 @@ export default class extends Controller {
 
         if (targetElement && container) {
             
+            
             const offset = targetElement.offsetTop - container.offsetTop;
             
             setTimeout(() => {
+                
                 container.scrollTo({
                     top: offset - container.clientHeight / 2 + targetElement.clientHeight / 2,
                 });
                 targetElement.style.transition = "transform 0.2s ease-in-out";
-                targetElement.style.transform = "scale(0.98)"; 
-        
-                setTimeout(() => {
-                    targetElement.style.transform = "scale(1)";
-                }, 100);
-            }, 200);
-    
-            target.classList.remove('text-gray-400', 'border-gray-100', 'bg-gray-200');
-            target.classList.add('text-white', 'bg-blue-600');
+                targetElement.style.transform = "scale(0.98)";
+                targetElement.style.transform = "scale(1)";
+                target.classList.remove('text-gray-400', 'border-gray-100', 'bg-gray-200');
+                target.classList.add('text-white', 'bg-blue-600');
+            }, 100);
+            
         }
     }
 }

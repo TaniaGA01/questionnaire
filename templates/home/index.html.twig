@@ -7,10 +7,10 @@
     <div class="h-full snap-start bg-gray-800">Section</div>
      <div 
         id="scroll-section"
-        class="h-full snap-start bg-gray-100 overflow-y-auto flex p-5 sm:p-20"
+        class="h-full snap-start bg-gray-100 overflow-y-auto flex p-5 xl:p-20"
         data-controller="scroll-on-click"
      >
-        <div id="linksBlock" class="w-[25%] flex flex-col justify-between px-0 lg:px-5">
+        <div id="linksBlock" class="w-[25%] hidden sm:flex flex-col justify-between px-0 lg:px-5">
             <a href="#btsBlock" 
                 class="text-white bg-blue-600 hover:border-blue-600 border-blue-600 rounded-xl"
                 data-action="click->scroll-on-click#clickToScrollBlock"
@@ -24,7 +24,7 @@
                                 'aria-hidden': true,
                             }) }}
                         </div>
-                        <div class="hidden lg:block">
+                        <div class="hidden sm:block">
                             <h2 class="uppercase items-center font-bold text-xl">Les BTS</h2> 
                             <h3 class="font-light text-sm">les plus recherchés</h3>
                         </div>
@@ -44,7 +44,7 @@
                                 'aria-hidden': true,
                             }) }}
                         </div>
-                        <div class="hidden lg:block">
+                        <div class="hidden sm:block">
                             <h2 class="uppercase items-center font-bold text-xl ">Les Licences</h2> 
                             <h3 class="font-light text-sm">les plus recherchées</h3>
                         </div>
@@ -64,7 +64,7 @@
                                 'aria-hidden': true,
                             }) }}
                         </div>
-                        <div class="hidden lg:block">
+                        <div class="hidden sm:block">
                             <h2 class="uppercase items-center font-bold text-xl ">Les Masters</h2> 
                             <h3 class="font-light text-sm">les plus recherchés</h3>
                         </div>
@@ -84,7 +84,7 @@
                                 'aria-hidden': true,
                             }) }}
                         </div>
-                        <div class="hidden lg:block">
+                        <div class="hidden sm:block">
                             <h2 class="uppercase items-center font-bold text-xl ">Les diplômes par filière</h2> 
                             <h3 class="font-light text-sm">les plus recherchés</h3>
                         </div>
@@ -104,7 +104,7 @@
                                 'aria-hidden': true,
                             }) }}
                         </div>
-                        <div class="hidden lg:block">
+                        <div class="hidden sm:block">
                             <h2 class="uppercase items-center font-bold text-xl ">Les types d'établissements</h2> 
                             <h3 class="font-light text-sm">les plus recherchés</h3>
                         </div>
@@ -124,7 +124,7 @@
                                 'aria-hidden': true,
                             }) }}
                         </div>
-                        <div class="hidden lg:block">
+                        <div class="hidden sm:block">
                             <h2 class="uppercase items-center font-bold text-xl ">Les formations par filière</h2> 
                             <h3 class="font-light text-sm">les plus recherchées</h3>
                         </div>
@@ -133,19 +133,27 @@
             </a>        
         </div>
         <figure 
-            class="flex flex-col gap-1 rounded-xl w-[75%] bg-white">
+            class="flex flex-col gap-1 rounded-xl w-full sm:w-[75%] bg-white">
             <div 
                 class="not-prose overflow-auto rounded-lg h-full"
             >
-                <div id="formationsBlock" class="h-full py-5 lg:py-52 2xl:py-96 overflow-y-auto px-5 snap-y snap-mandatory"
+                <div id="formationsBlock" class="h-full py-5 sm:py-52 2xl:py-96 overflow-y-auto px-5 snap-y snap-mandatory"
                 data-controller="scroll-block"
                 >
                     <div id="btsBlock" class="transition-all duration-500 ease-in-out translate-3 my-5 lg:my-30 overflow-y-auto snap-center"
                     data-scroll-block-target="itemBlock">
+                        <div class="block sm:hidden">
+                            <h2 class="uppercase items-center font-bold text-xl">Les BTS</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
                         <div class="flex flex-wrap content-center">
                             {% for bts in formations.bts %}
                                 <div class="m-1">
-                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4 border-blue-600  text-blue-600 hover:bg-blue-600 hover:text-blue-200"
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4
+                                    
+                                    bg-gray-300 text-gray-600 border-gray-400 hover:bg-gray-700 hover:text-gray-100
+                                      sm:border-blue-600  sm:text-blue-100 sm:bg-blue-600 sm:hover:bg-blue-900 sm:hover:text-blue-200 
+                                    "
                                     >
                                     <small>{{ bts.name }}</small>
                                     </button>
@@ -164,12 +172,16 @@
                             </a>
                         </div>
                     </div>
-                    <div id="licencesBlock" class="transition-all duration-500 ease-in-out  my-5 lg:my-30 overflow-y-auto snap-center"
+                    <div id="licencesBlock" class="transition-all duration-500 ease-in-out translate-3 my-5 lg:my-30 overflow-y-auto snap-center"
                     data-scroll-block-target="itemBlock">
+                        <div class="block sm:hidden">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les Licences</h2> 
+                            <h3 class="font-light text-sm">les plus recherchées</h3>
+                        </div>
                         <div class="flex flex-wrap content-center">
                             {% for licence in formations.licences %}
                                 <div class="m-1">
-                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-200"
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  bg-gray-300 text-gray-600 border-gray-400 hover:bg-gray-700 hover:text-gray-100"
                                     >
                                     <small>{{ licence.name }}</small>
                                     </button>
@@ -188,12 +200,16 @@
                             </a>
                         </div>
                     </div>
-                    <div id="mastersBlock" class="transition-all duration-500 ease-in-out  my-5 lg:my-30 overflow-y-auto snap-center"
+                    <div id="mastersBlock" class="transition-all duration-500 ease-in-out translate-3 my-5 lg:my-30 overflow-y-auto snap-center"
                     data-scroll-block-target="itemBlock">
+                        <div class="block sm:hidden">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les Masters</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
                         <div class="flex flex-wrap content-center">
                             {% for master in formations.masters %}
                                 <div class="m-1">
-                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-200">
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  bg-gray-300 text-gray-600 border-gray-400 hover:bg-gray-700 hover:text-gray-100">
                                     <small>{{ master.name }}</small>
                                     </button>
                                 </div>
@@ -211,12 +227,15 @@
                             </a>
                         </div>
                     </div>
-                    <div id="diplomesFiliereBlock" class="transition-all duration-500 ease-in-out  my-5 lg:my-30 overflow-y-auto snap-center"
-                    data-scroll-block-target="itemBlock">
+                    <div id="diplomesFiliereBlock" class="transition-all duration-500 ease-in-out translate-3 my-5 lg:my-30 overflow-y-auto snap-center" data-scroll-block-target="itemBlock">
+                        <div class="block sm:hidden">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les diplômes par filière</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
                         <div class="flex flex-wrap content-center">
                             {% for diplomeFiliere in formations.diplomesFiliere %}
                                 <div class="m-1">
-                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-200">
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  bg-gray-300 text-gray-600 border-gray-400 hover:bg-gray-700 hover:text-gray-100">
                                     <small>{{ diplomeFiliere.name }}</small>
                                     </button>
                                 </div>
@@ -234,12 +253,16 @@
                             </a>
                         </div>
                     </div>
-                    <div id="typesEtablissementBlock" class="transition-all duration-500 ease-in-out my-5 lg:my-30 overflow-y-auto snap-center"
+                    <div id="typesEtablissementBlock" class="transition-all duration-500 ease-in-out translate-3 my-5 lg:my-30 overflow-y-auto snap-center"
                     data-scroll-block-target="itemBlock">
+                        <div class="block sm:hidden">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les types d'établissements</h2> 
+                            <h3 class="font-light text-sm">les plus recherchés</h3>
+                        </div>
                         <div class="flex flex-wrap content-center">
                             {% for typeEtablissement in formations.typesEtablissement %}
                                 <div class="m-1">
-                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-200">
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  bg-gray-300 text-gray-600 border-gray-400 hover:bg-gray-700 hover:text-gray-100">
                                     <small>{{ typeEtablissement.name }}</small>
                                     </button>
                                 </div>
@@ -257,12 +280,15 @@
                             </a>
                         </div>
                     </div>
-                    <div id="formationFiliereBlock" class="transition-all duration-500 ease-in-out  my-5 lg:my-30  overflow-y-auto snap-center"
-                    data-scroll-block-target="itemBlock">
+                    <div id="formationFiliereBlock" class="transition-all duration-500 ease-in-out translate-3 my-5 lg:my-30 overflow-y-auto snap-center" data-scroll-block-target="itemBlock">
+                    <div class="block sm:hidden">
+                            <h2 class="uppercase items-center font-bold text-xl ">Les formations par filière</h2> 
+                            <h3 class="font-light text-sm">les plus recherchées</h3>
+                        </div>
                         <div class="flex flex-wrap content-center">
                             {% for formationFiliere in formations.formationsFiliere %}
                                 <div class="m-1">
-                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  border-gray-300 text-gray-300 hover:bg-gray-300 hover:text-gray-200">
+                                    <button class="rounded-full text-bas font-medium justify-end align-middle border-1 py-1.5 px-4  bg-gray-300 text-gray-600 border-gray-400 hover:bg-gray-700 hover:text-gray-100">
                                     <small>{{ formationFiliere.name }}</small>
                                     </button>
                                 </div>
