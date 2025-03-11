@@ -5,7 +5,6 @@ export default class extends Controller {
     static targets = ['itemBlock']
 
     connect() {
-        console.log(this)
         this.observer = new IntersectionObserver(this.handleIntersect.bind(this), {
             root: this.element,
             threshold: 1
@@ -44,7 +43,7 @@ export default class extends Controller {
             });
         }
     }
-    
+
     disconnect() {
         this.observer.disconnect();
     }
